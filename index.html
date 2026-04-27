@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>System Security Scan</title>
+  <style>
+    body {
+      background: black;
+      color: rgb(240, 247, 240);
+      font-family: monospace;
+      text-align: center;
+      padding-top: 100px;
+    }
+    #bar {
+      width: 0%;
+      height: 30px;
+      background: rgb(236, 238, 236);
+      margin-top: 20px;
+    }
+    #container {
+      width: 80%;
+      margin: auto;
+      border: 1px solid rgb(228, 236, 228);
+    }
+    img {
+      margin-top: 30px;
+      max-width: 300px;
+      border: 2px solid lime;
+    }
+    .prank-text {
+  font-size: 40px;  
+  font-weight: bold;
+  margin-top: 20px;
+}
+  </style>
+</head>
+<body>
+
+<h1>Initializing Security Scan...</h1>
+<div id="container">
+  <div id="bar"></div>
+</div>
+<p id="status">Scanning files...</p>
+
+<script>
+let width = 0;
+let bar = document.getElementById("bar");
+let status = document.getElementById("status");
+
+let interval = setInterval(() => {
+  width++;
+  bar.style.width = width + "%";
+
+  if (width < 30) status.innerText = "Scanning system files...";
+  else if (width < 60) status.innerText = "Checking passwords...";
+  else if (width < 90) status.innerText = "Uploading secrets...";
+  else status.innerText = "Finalizing...";
+
+  if (width >= 100) {
+    clearInterval(interval);
+document.body.innerHTML = `
+  <h1>Scan Complete!</h1>
+  <img src="cat.jpg" alt="Prank Cat">
+  <p class="prank-text">😂 YOU'VE BEEN PRANKED 😂</p>
+`;
+  }
+}, 15);
+</script>
+
+</body>
+</html>
